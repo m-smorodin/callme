@@ -38,6 +38,7 @@ function sendSMS ($to, $msg) {
 	$u['bytehand.com'] = "bytehand.com:3800/send?id=".uc($sms["id"])."&key=".uc($sms["key"])."&to=".uc($sms["num"])."&partner=callme&from=".uc($sms["frm"])."&text=".uc($msg);
 	$u['sms-sending.ru'] = "lcab.sms-sending.ru/lcabApi/sendSms.php?login=".uc($sms["log"])."&password=".uc($sms["pss"])."&txt=".uc($msg)."&to=".uc($sms["num"]);
 	$u['infosmska.ru'] = "api.infosmska.ru/interfaces/SendMessages.ashx?login=".uc($sms['log'])."&pwd=".uc($sms["pss"])."&sender=SMS&phones=".uc($sms["num"])."&message=".uc($msg);
+	$u['rocketsms.by'] = "api.rocketsms.by/simple/send?username=".uc($sms['log'])."&password=".md5(uc($sms["pss"]))."&phone=".uc($sms["num"])."&text=".uc($msg);
 	$u['smsaero.ru'] = "gate.smsaero.ru/send/?user=".uc($sms["log"])."&password=".md5 (uc($sms["pss"]))."&to=".uc($sms["num"])."&text=".uc($msg)."&from=".uc($sms["frm"]);
 	@$r = file_get_contents("http://".$u[$sms["prv"]]);	
 }
