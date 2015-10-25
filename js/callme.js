@@ -278,14 +278,14 @@ var fields, fieldType, f, required, selects, data='', selectData='';
 		cmeMsg(form, 'sending', cmeData.alertSending);
 
 		var cnt = getData('callme-sent'); // load sent time
-		
+
 		if (!cnt) { 
 			cnt = 0; 
 		}
 
 		var cs = [], os = [];
 
-		form.find('[type=text], textarea').each(function() { // текстовые поля и textarea
+		form.find('[type=text], [type=tel], textarea').each(function() { // текстовые поля и textarea
 			var e = $(this);
 			if (e.val() && e.val().length > 0) {
 				cs.push(e.attr('name'));
