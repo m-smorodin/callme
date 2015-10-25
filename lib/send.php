@@ -1,7 +1,7 @@
 <?php 
 // украинцы — мирный и спокойный народ :)
 // dedushka.org // nazartokar.com // qbx.me // nazartokar@gmail.com
-// callme 2.2
+// callme 2.3
 
 //require("smtp.php");
 header ("Content-Type: text/html; charset=utf-8"); //кодировка
@@ -28,7 +28,7 @@ function uc ($s) {
 }
 
 function gf ($s) { 
-	$s = substr( (htmlspecialchars($_GET[$s])), 0, 500);
+	$s = substr( (htmlspecialchars($_POST[$s])), 0, 500);
 	if (strlen($s) > 1) return $s;
 }
 
@@ -61,8 +61,8 @@ function jsAnswer ($result, $cls, $time, $message) {
 }
 
 function getOptions ($o) { // get callme options
-	$cs = $_GET["cs"];
-	$os = $_GET["os"];
+	$cs = $_POST["cs"];
+	$os = $_POST["os"];
 	$i = 0;	
 	$opts = " ";
 
@@ -93,31 +93,24 @@ if ($interval < 1) { // интервал отправки (сек)
 	jsAnswer ("error", "c_error", "", "Сообщение уже было отправлено.");
 } else {
 	//$get_data = gF('os');
-	$get_data = $_GET["cs"];
+	$get_data = $_POST["cs"];
 
 	if (count($get_data) > 1) { // data to send
-		$os = $_GET["os"];
-		$cs = $_GET["cs"];
+		$os = $_POST["os"];
+		$cs = $_POST["cs"];
 		$ip = $_SERVER["REMOTE_ADDR"];
 
 		$title 	= "CallMe: обратный звонок";
 		$title 	= "=?UTF-8?B?".base64_encode($title)."?=";
 		$mess 	= "";
 
-		$mess  .= getOptions(1);
+		$mess .= getOptions(1);
+		$mess = $mess."<div style=\"background:#bfd4ac;border:1px solid #999;padding:10px;margin: 10px 0;\">IP: ".$ip." / <a href='http://dedushka.org/whois/#".$ip."'>Определить город</a></div>";
 
-		if (ini_get('allow_url_fopen')) { // get city 
-			$ip 		= $_SERVER["REMOTE_ADDR"];
-			@$geo 	= file_get_contents("http://freegeoip.net/json/".$ip);
-			@$geo 	= json_decode ($geo, true);
-
-			addToMess ("Откуда запрос", ($geo['city']." / ".$geo['country_name']." / ".$ip));
-		}
-
-		$mess = $mess."<hr><a href='http://dedushka.org/tag/callme/'>Следите</a> за обновлениями.<br>Спасибо за использование Callme.";
+		$mess = $mess."<a href='http://dedushka.org/tag/callme/'>Следите</a> за обновлениями.<br>Спасибо за использование Callme.";
 		
 		$headers	 = "Content-type: text/html; charset=utf-8\r\n"; 
-		$headers	.= "From: Callme 2.2 <".$from.">\r\n"; 
+		$headers	.= "From: Callme 2.3 <".$from.">\r\n"; 
 
 		$sms['msg'] = translit((getOptions(0)));
 		$sms['msg'] = substr($sms['msg'], 0, 160);

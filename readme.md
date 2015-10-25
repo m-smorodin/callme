@@ -1,4 +1,4 @@
-# 2.2, 2015-03-25 [details](http://dedushka.org/kod/7767.html)
+# 2.3, 2015-10-25 [details](http://dedushka.org/kod/7767.html)
 
 ## Fixed issues from the previous version:
 

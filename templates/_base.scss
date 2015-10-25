@@ -6,11 +6,15 @@
 	right: 0;
 	width: 22px;
 	z-index: $zIndex;
+	@media (max-width: 767px) {
+		height: 226px;
+		width: 33px;
+	}
 }
 .cme-form {
 	$formBorder: "" !global !default;
 	@if $formBorder != "" {
-		@include border(all, $formBorder);	
+		@include border(all, $formBorder);
 	}
 	@include box-shadow(0, 2px, 20px, #333);
 	@include border-radius($formBrdRadius);
@@ -23,16 +27,36 @@
 	right: 50px;
 	top: 150px;
 	width: 305px;
+	@media(max-width: 992px) {
+		width: 76%;
+		right: auto;
+		top: auto;
+		left: 12% !important;
+		z-index: $zIndex + 1;
+	}
+	@media(max-width: 480px) {
+		width: 90%;
+		right: auto;
+		top: auto;
+		left: 5% !important;
+		z-index: $zIndex + 1;
+	}
 	color: $formText;
 	.has-error {
 		background: $bgHasError;
 	}
 	span {
-		padding: 2px 3px 2px 10px;
+		padding: 2px 10px 2px;
 		display: block;
 		color: $formText;
 		font-size: $formTxtSizeSmall;
 		clear: both;
+		@media(max-width: 992px) {
+			font-size: $formTxtSizeSmall * 1.3;
+		}
+		@media(max-width: 480px) {
+			font-size: $formTxtSizeSmall * 1.6;
+		}
 	}
 	.cme-btn {
 		@extend .cme-btn;
@@ -44,44 +68,57 @@
 		text-shadow: 0 1px 0 $btnTxtShadow;
 		margin: 0;
 		cursor: pointer;
-		width: 140px;
+		min-width: 140px;
 		outline: 0;
+		@media(max-width: 992px) {
+			font-size: $formTxtSizeSmall * 1.3;
+		}
+		@media(max-width: 480px) {
+			font-size: $formTxtSizeSmall * 1.6;
+			min-width: 0;
+		}
 	}
 	select {
 		@include border(all, $fldBrd);
 		background: $fldBg;
 		padding: 4px 3px 3px 9px;
-		width: 100%;
-		font-size: 12px;
+		font-size: $formTxtSizeSmall;
 		$fldBrdRad: 0px !global !default;
 		border-radius: $fldBrdRad;
 		outline-style: none;
-		height: 21px;
-		line-height: 21px;
-		margin: 0 0 5px 0;
+		margin: 0 0 5px;
 		font-size: $formTxtSize;
 		cursor: pointer;
 		font-family: $formFont;
 		outline: 0;
+		@media(max-width: 992px) {
+			font-size: $formTxtSizeSmall * 1.3;
+		}
+		@media(max-width: 480px) {
+			font-size: $formTxtSizeSmall * 1.6;
+		}
 	}
 	.cme-select {
-		$fldWidth: 280px !global !default;
-		width: $fldWidth;
+		width: calc(100% - 20px);
 		margin-left: 10px;
-		height: 27px;
-		line-height: 27px;
+		padding: 5px 0;
 	}
 	.cme-txt {
 		@include border(all, $fldBrd); 
-		$fldWidth: 280px !global !default;
-		width: $fldWidth;
+		width: 100%;
 		border-radius: $fldBrdRad;
 		color: $fldText;
 		font-size: $formTxtSize;
 		padding: 5px 3px !important;
 		outline: 0;
+		@media(max-width: 992px) {
+			font-size: $formTxtSizeSmall * 1.3;
+		}
+		@media(max-width: 480px) {
+			font-size: $formTxtSizeSmall * 1.6;
+		}
 	}
-	h6 {
+	h6, .h6 {
 		$hdrBg: false !default;
 		$hdrTxtShadow: "" !global !default;
 		$hdrBrdRadius: "" !global !default;
@@ -94,6 +131,12 @@
 		font-size: $hdrTxtSize;
 		padding: 10px 0 9px 10px;
 		margin: 0 0 7px 0;
+		@media(max-width: 992px) {
+			font-size: $formTxtSizeSmall * 1.3;
+		}
+		@media(max-width: 480px) {
+			font-size: $formTxtSizeSmall * 1.6;
+		}
 	}
 	span div {
 		float: left;
@@ -126,7 +169,17 @@
 		text-decoration: none; 
 		&:hover { 
 			color: $closeTxt;
-			@include opacity(80);
+			opacity: .8;
+		}
+		@media(max-width: 992px) {
+			font-size: $formTxtSizeSmall * 1.3;
+			height: $closeSize * 1.3;
+			width: $closeSize * 1.3;
+		}
+		@media(max-width: 480px) {
+			font-size: $formTxtSizeSmall * 1.6;
+			height: $closeSize * 1.5;
+			width: $closeSize * 1.6;
 		}
 	}
 	.cme-btn-place {
@@ -186,11 +239,18 @@
 #viewform {
 	border: 0;
 	padding: 0;
-	background: url(bttn.png);
-	height: 185px;
-	width: 22px;
+	background: {
+		image: url(bttn.png);
+		size: cover;
+	}
 	cursor: pointer;
 	outline: 0;
+	height: 185px;
+	width: 22px;
+	@media(max-width: 767px) {
+		height: 277px;
+		width: 33px;
+	}
 }
 #cme-back {
 	display: none;

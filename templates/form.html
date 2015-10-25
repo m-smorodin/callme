@@ -5,11 +5,17 @@
 <div class='cme-form' id="cme-form-main">
 	<form class='cme'>
 		<a class='cme-cls' href='/callme/'>&times;</a>
-		<h6>{{:title}}</h6>
+		<div class="h6">{{:title}}</div>
 		<div class='cme-fields'>
+
 			<div class='cme-template' data-cme='textField'>
 				<span>{{:caption}}</span>
 				<span><input placeholder='{{:placeholder}}' name='{{:caption}}' required class='cme-txt' type='text' maxlength='150'></span>
+			</div>
+
+			<div class='cme-template' data-cme='textPhone'>
+				<span>{{:caption}}</span>
+				<span><input placeholder='{{:placeholder}}' name='{{:caption}}' required class='cme-txt cme-phone' type='tel' maxlength='15'></span>
 			</div>
 
 			<div class='cme-template' data-cme='textArea'>
