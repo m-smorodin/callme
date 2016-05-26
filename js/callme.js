@@ -245,7 +245,7 @@ var fields, fieldType, f, required, selects, data='', selectData='';
 		allRequired = 1,
 		form = $(e).closest('form');
 
-		form.find('[type=text], textarea').each(function (){
+		form.find('[type=text], [type=tel], textarea').each(function (){
 			if ($(this).attr('required') != undefined) { allRequired = 0; }
 
 			if ($(this).val().length < 1 && $(this).attr('required') != undefined) {
@@ -255,7 +255,7 @@ var fields, fieldType, f, required, selects, data='', selectData='';
 		});
 
 		if (allRequired == 1) { 
-			form.find('[type=text], textarea').each(function (){
+			form.find('[type=text], [type=tel], textarea').each(function (){
 				if ($(this).val().length < 1) {
 					err = true; 
 					$(this).addClass('has-error');
